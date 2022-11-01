@@ -10,10 +10,16 @@ export default function Button(props) {
   }
 
   if (props.danger) {
-    buttonClass += " button--danger"
+    buttonClass += " button--danger";
   }
 
   return (
-    <button className={buttonClass}>{props.children}</button>
+    <button
+      disabled={props.disabled}
+      onClick={props.onClick}
+      className={buttonClass}
+    >
+      {props.children}
+    </button>
   );
 }

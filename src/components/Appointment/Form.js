@@ -25,13 +25,13 @@ export default function Form(props) {
         <InterviewerList
           interviewers={interviewers}
           value={interviewer}
-          onChange={action("setInterviewer")}
+          onChange={setInterviewer}
         />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger {/* your code goes here */}>Cancel</Button>
-          <Button confirm {/* your code goes here */}>Save</Button>
+          <Button danger onClick={onCancel}>Cancel</Button>
+          <Button confirm onClick={onSave}>Save</Button>
         </section>
       </section>
     </main>

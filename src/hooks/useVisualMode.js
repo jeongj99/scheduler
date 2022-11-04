@@ -9,8 +9,10 @@ export default function useVisualMode(initial) {
   };
 
   const back = () => {
-    setHistory(prev => prev.slice(0, prev.length - 1));
+    setHistory(prev => prev.length === 1 ? prev : prev.slice(0, prev.length - 1));
   };
+  console.log(history);
+  console.log(mode);
 
   return { mode, transition, back };
 }

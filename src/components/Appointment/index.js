@@ -1,5 +1,7 @@
 import React from "react";
+
 import "./styles.scss";
+
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
@@ -24,9 +26,13 @@ export default function Appointment(props) {
       interviewer
     };
 
-    bookInterview(id, interview);
-
-    transition(SHOW);
+    bookInterview(id, interview)
+      .then(() => {
+        transition(SHOW);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (

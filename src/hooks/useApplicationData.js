@@ -32,10 +32,16 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
+    const days = [
+      ...state.days
+    ];
+
+    days.find(day => day.appointments.includes(id)).spots--;
+
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(response => {
         console.log(response.status, response.statusText);
-        return setState(prev => ({ ...prev, appointments }));
+        return setState(prev => ({ ...prev, appointments, days }));
       });
   };
 
@@ -50,10 +56,16 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
+    const days = [
+      ...state.days
+    ];
+
+    days.find(day => day.appointments.includes(id)).spots++;
+
     return axios.delete(`/api/appointments/${id}`)
       .then(response => {
         console.log(response.status, response.statusText);
-        return setState(prev => ({ ...prev, appointments }));
+        return setState(prev => ({ ...prev, appointments, days }));
       });
   };
 

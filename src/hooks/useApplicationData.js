@@ -21,51 +21,64 @@ export default function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
 
-  const bookInterview = (id, interview) => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-
-    const days = [
+  const updateSpots = (id, appointments) => {
+    const updatedDays = [
       ...state.days
     ];
 
-    days.find(day => day.appointments.includes(id)).spots--;
+    const day = updatedDays.find(day => day.appointments.includes(id));
 
+    const spots = day.appointments.reduce((spots, id) => {
+      if (!appointments[id].interview) {
+        spots++;
+      }
+      return spots;
+    }, 0);
+
+    day.spots = spots;
+
+    return updatedDays;
+  };
+
+  const bookInterview = (id, interview) => {
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(response => {
         console.log(response.status, response.statusText);
-        return setState(prev => ({ ...prev, appointments, days }));
+
+        const appointment = {
+          ...state.appointments[id],
+          interview: { ...interview }
+        };
+
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment
+        };
+
+        const days = updateSpots(id, appointments);
+
+        setState(prev => ({ ...prev, appointments, days }));
       });
   };
 
   const cancelInterview = id => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: null
-    };
-
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-
-    const days = [
-      ...state.days
-    ];
-
-    days.find(day => day.appointments.includes(id)).spots++;
-
     return axios.delete(`/api/appointments/${id}`)
       .then(response => {
         console.log(response.status, response.statusText);
-        return setState(prev => ({ ...prev, appointments, days }));
+
+        const appointment = {
+          ...state.appointments[id],
+          interview: null
+        };
+
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment
+        };
+
+        const days = updateSpots(id, appointments);
+
+        setState(prev => ({ ...prev, appointments, days }));
       });
   };
 

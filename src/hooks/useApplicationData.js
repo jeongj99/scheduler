@@ -21,10 +21,8 @@ export default function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
 
-  const updateSpots = (id, appointments) => {
-    const updatedDays = [
-      ...state.days
-    ];
+  const updateSpots = (state, id, appointments) => {
+    const updatedDays = [...state.days];
 
     const day = updatedDays.find(day => day.appointments.includes(id));
 
@@ -55,7 +53,7 @@ export default function useApplicationData() {
           [id]: appointment
         };
 
-        const days = updateSpots(id, appointments);
+        const days = updateSpots(state, id, appointments);
 
         setState(prev => ({ ...prev, appointments, days }));
       });
@@ -76,7 +74,7 @@ export default function useApplicationData() {
           [id]: appointment
         };
 
-        const days = updateSpots(id, appointments);
+        const days = updateSpots(state, id, appointments);
 
         setState(prev => ({ ...prev, appointments, days }));
       });

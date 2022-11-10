@@ -56,7 +56,7 @@ npm run storybook
 ```
 ## Running Cypress
 
-In the package.json file, a add "cypress" script to the "scripts" section if not present
+In the package.json file, add a "cypress" script to the "scripts" section if not present
 ```javascript
 "cypress": "cypress open -P ."
 ```

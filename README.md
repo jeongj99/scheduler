@@ -3,10 +3,10 @@ A react-based project that allows users to book, edit, and cancel interviews. Th
 
 Each day (Mon-Fri) has a maximum of 5 available spots, and one can choose any spot to book an interview by typing their name and selecting their desired interviewer. If anything happens, one can edit their appointment, or one can completly delete their appointment.
 
-## Screenshots
-!["Booking an appointment"] (https://github.com/jeongj99/scheduler/blob/main/docs/Book-Appointment.gif?raw=true)
-!["Editing an appointment"] (https://github.com/jeongj99/scheduler/blob/main/docs/Edit-Appointment.gif?raw=true)
-!["Deleting an appointment"] (https://github.com/jeongj99/scheduler/blob/main/docs/Delete-Appointment.gif?raw=true)
+## GIFs
+!["Booking an appointment"](https://github.com/jeongj99/scheduler/blob/main/docs/Book-Appointment.gif?raw=true)
+!["Editing an appointment"](https://github.com/jeongj99/scheduler/blob/main/docs/Edit-Appointment.gif?raw=true)
+!["Deleting an appointment"](https://github.com/jeongj99/scheduler/blob/main/docs/Delete-Appointment.gif?raw=true)
 
 ## Dependencies
 - axios

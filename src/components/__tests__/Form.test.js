@@ -4,6 +4,7 @@ import { render, cleanup, fireEvent } from "@testing-library/react";
 
 import Form from "components/Appointment/Form";
 
+// Cleans up after every test
 afterEach(cleanup);
 
 describe("Form", () => {

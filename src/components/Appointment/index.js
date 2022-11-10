@@ -25,36 +25,40 @@ export default function Appointment(props) {
   const ERROR_SAVE = "ERROR_SAVE";
   const ERROR_DELETE = "ERROR_DELETE";
 
+  // Custom hook imported
+  // If interview is not null, set mode to SHOW; otherwise EMPTY
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
   );
 
+  // Function used when the save button is clicked 
   const save = (name, interviewer) => {
     const interview = {
       student: name,
       interviewer
     };
 
-    transition(SAVING);
+    transition(SAVING); // Transitions to the save component, displaying a loading icon and a saving message
 
-    bookInterview(id, interview)
+    bookInterview(id, interview) // Does the axios request and changes the state to display it
       .then(() => {
-        transition(SHOW);
+        transition(SHOW); // Mode is set to SHOW to display the Show component
       })
       .catch(() => {
-        transition(ERROR_SAVE, true);
+        transition(ERROR_SAVE, true); // When there is an error, the Error component is rendered
       });
   };
 
+  // Function used when the save button is clicked 
   const deleting = () => {
-    transition(DELETING, true);
+    transition(DELETING, true); // Transitions to the deleting component, displaying a loading icon and a deleting message
 
-    cancelInterview(id)
+    cancelInterview(id) // Does the axios request and changes the state to display it
       .then(() => {
-        transition(EMPTY);
+        transition(EMPTY); // Mode is set to EMPTY to display the Empty component
       })
       .catch(() => {
-        transition(ERROR_DELETE, true);
+        transition(ERROR_DELETE, true); // When there is an error, the Error component is rendered
       });
   };
 

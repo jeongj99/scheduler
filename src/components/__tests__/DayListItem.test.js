@@ -4,6 +4,7 @@ import { render, cleanup } from "@testing-library/react";
 
 import DayListItem from "components/DayListItem";
 
+// Cleans up after every test
 afterEach(cleanup);
 
 it("renders without crashing", () => {

@@ -9,6 +9,7 @@ export default function useApplicationData() {
     interviewers: {}
   });
 
+  // On page load, it does all those GET requests to those paths and set the states with the data obtained from those GET Requests
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
@@ -19,8 +20,10 @@ export default function useApplicationData() {
     });
   }, []);
 
+  // Function setDay that changes the day property in state
   const setDay = day => setState({ ...state, day });
 
+  // Function updateSpots allows the number to decrease or increase when one books an appointment or cancels
   const updateSpots = (state, id, appointments) => {
     const updatedDays = [...state.days];
 
@@ -38,6 +41,7 @@ export default function useApplicationData() {
     return updatedDays;
   };
 
+// Function that is used when one clicks on the save button; it does axios PUT request, and then changes the state using setState
   const bookInterview = (id, interview) => {
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(response => {
@@ -59,6 +63,7 @@ export default function useApplicationData() {
       });
   };
 
+// Function that is used when one clicks on the delete button; it does axios DELETE request, and then changes the state using setState
   const cancelInterview = id => {
     return axios.delete(`/api/appointments/${id}`)
       .then(response => {

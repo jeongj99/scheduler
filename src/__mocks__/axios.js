@@ -1,3 +1,4 @@
+// Fixtures is the mock database
 const fixtures = {
   days: [
     {
@@ -53,6 +54,7 @@ const fixtures = {
   }
 };
 
+// Making mock axios GET, PUT, and DELETE Requests
 export default {
   defaults: { baseURL: "" },
   get: jest.fn(url => {

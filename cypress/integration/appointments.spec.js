@@ -1,4 +1,7 @@
+// Integration test using cypress for Appointments
+
 describe("Appointments", () => {
+  // Does these before every 'it' tests
   beforeEach(() => {
     cy.request("GET", "/api/debug/reset");
 

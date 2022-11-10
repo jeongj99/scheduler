@@ -4,6 +4,7 @@ import { render, cleanup, fireEvent } from "@testing-library/react";
 
 import Button from "components/Button";
 
+// Cleans up after every test
 afterEach(cleanup);
 
 it("renders without crashing", () => {

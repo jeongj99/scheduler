@@ -1,3 +1,5 @@
+// Integration test using cypress for navigating the app
+
 describe("Navigation", () => {
   it("should visit root", () => {
     cy.visit("/");
